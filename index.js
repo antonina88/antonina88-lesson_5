@@ -38,14 +38,6 @@ app.post('/', function (req, res) {
       res.render('index', {tasks: rows});
     });
 	};
-  if (req.body.done) {
-    todoList.complete(req.body.id);
-    todoList.list(function(err, rows) {
-      if (err)
-        throw err;
-      res.render('index', {tasks: rows});
-    });
-  };
 	if (req.body.newText) {
 		todoList.change(req.body.id, req.body.newText);
 		todoList.list(function(err, rows) {
