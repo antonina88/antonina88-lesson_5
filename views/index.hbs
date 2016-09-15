@@ -1,0 +1,72 @@
+<html>
+	<header>
+		<meta charset="utf-8">
+		<title>Работа с базой данных</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	</header>
+	<body>
+		<h1 align="center">Домашняя работа №5 - Работа с базой данных</h1>
+  		<div class="container">
+  		  	<h2>Список всех задач</h2>
+			<table class="table">
+				<tr>
+					<td>Номер задачи</td>
+					<td>Текст задачи</td>
+					<td>Статус завершенности</td>
+					<td>Установить статус "Завершена"</td>
+					<td>Удалить задачу</td>
+				</tr>
+				{{#each tasks}}
+				<tr>
+					<td>{{this.id}}</td>
+					<td>{{this.text}}</td>
+					<td>{{this.completed}}</td>
+					<td>
+						<form action="/" method="post">
+							<input type="hidden" name="id" class="form-control" value="{{this.id}}">
+							<input type="checkbox" name="done">
+							<button type="submit" class="btn btn-small btn-success glyphicon glyphicon-ok" name="doneBtn"></button>
+						</form>
+					</td>
+					<td>
+						<form action="/" method="post">
+							<input type="hidden" name="id" class="form-control" value="{{this.id}}">
+							<button class="btn btn-small btn-danger delete-apartment glyphicon glyphicon-remove" name="deleteBtn" value="{{this.id}}"></button>
+						</form>
+					</td>
+				</tr>
+				{{/each}}
+			</table>
+  		</div>
+  		<hr>
+
+		<div class="container col-xs-6">
+			<h3>Редактировать задачу</h3>
+			<form action="/" method="post">
+				<div class="form-group">
+					<label for="idChange"> Введите номер задачи, которую вы хотите отредактировать</label> 
+					<input class="form-control" id="idChange" type="text" name="id" value="{{task.id}}">
+
+					<label for="changeText"> Введите новый текст задачи</label> 
+					<input class="form-control" id="changeText" type="text" name="newText">
+
+					<label for="changeDone"> Установить задаче статус "Завершена" </label> 
+					<input id="changeDone" type="checkbox" name="done"> <br>
+					<button type="submit" class="btn btn-success" name="addNewTask">Сохранить</button>
+				</div>
+			</form>
+		</div>	
+  		<div class="container col-xs-6">
+			<h3>Добавить новую задачу</h3>
+			<form action="/" method="post">
+				<div class="form-group">
+					<label for="addTask">Введите текст новой задачи</label>
+					<input type="text" name="text" class="form-control" id="addTask">
+					<button type="submit" class="btn btn-success" name="addNewTask">Добавить</button>
+				</div>
+			</form>
+		</div>
+	
+	</body>
+<html>
+
